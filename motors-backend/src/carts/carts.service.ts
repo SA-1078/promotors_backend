@@ -1,0 +1,36 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Cart, CartDocument } from './schemas/cart.schema';
+import { CreateCartDto } from './dto/create-cart.dto';
+
+@Injectable()
+export class CartsService {
+    constructor(
+        @InjectModel(Cart.name) private cartModel: Model<CartDocument>,
+    ) { }
+
+    async createOrUpdate(createCartDto: CreateCartDto): Promise<Cart> {
+        const { usuario_id, items } = createCartDto;
+
+        // Check if cart exists for user
+        let cart = await this.cartModel.findOne({ usuario_id });
+
+        if (cart) {
+            // Replace items or merge? Usually replace entire cart state from frontend
+            cart.items = items as any;
+            return cart.save();
+        } else {
+            const newCart = new this.cartModel(createCartDto);
+            return newCart.save();
+        }
+    }
+
+    async findByUser(userId: number): Promise<Cart | null> {
+        return this.cartModel.findOne({ usuario_id: userId }).exec();
+    }
+
+    async delete(userId: number): Promise<any> {
+        return this.cartModel.deleteOne({ usuario_id: userId }).exec();
+    }
+}
