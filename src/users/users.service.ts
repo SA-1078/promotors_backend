@@ -20,16 +20,12 @@ export class UsersService {
 
     async create(createUserDto: CreateUserDto): Promise<User | null> {
         try {
-            // Hashear la contraseña antes de guardarla
             const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-            // Mapear DTO 'password' a Entidad 'password_hash' y excluir el password en texto plano
             const { password, ...userData } = createUserDto;
-            // Crear instancia de usuario con la data mapeada
             const user = this.userRepository.create({
                 ...userData,
                 password_hash: hashedPassword,
             });
-            // Guardar en base de datos
             return await this.userRepository.save(user);
         } catch (err) {
             console.error('Error creating user:', err);
@@ -46,7 +42,6 @@ export class UsersService {
             const query = this.userRepository.createQueryBuilder('user');
 
             if (search) {
-                // Lógica de búsqueda flexible por campo específico o general
                 if (searchField) {
                     switch (searchField) {
                         case 'nombre':
@@ -62,7 +57,6 @@ export class UsersService {
                             );
                     }
                 } else {
-                    // Búsqueda general por nombre o email si no se especifica campo
                     query.andWhere(
                         '(user.nombre ILIKE :search OR user.email ILIKE :search)',
                         { search: `%${search}%` },
@@ -70,14 +64,12 @@ export class UsersService {
                 }
             }
 
-            // Ordenamiento dinámico
             if (sort) {
                 query.orderBy(`user.${sort}`, (order ?? 'ASC') as 'ASC' | 'DESC');
             } else {
                 query.orderBy('user.id_usuario', 'DESC');
             }
 
-            // Retornar resultados paginados
             return await paginate<User>(query, { page, limit });
         } catch (err) {
             console.error('Error retrieving users:', err);

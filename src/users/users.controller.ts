@@ -32,7 +32,6 @@ export class UsersController {
     async findAll(
         @Query() query: QueryDto,
     ): Promise<SuccessResponseDto<Pagination<User>>> {
-        // Limitar el tamaño máximo de página por seguridad
         if (query.limit && query.limit > 100) {
             query.limit = 100;
         }

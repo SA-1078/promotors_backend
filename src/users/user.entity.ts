@@ -17,7 +17,7 @@ export class User {
     @Column('text')
     password_hash: string;
 
-    @Column({ length: 20 }) // 'admin', 'empleado', 'cliente'
+    @Column({ length: 20 })
     rol: string;
 
     @CreateDateColumn()
