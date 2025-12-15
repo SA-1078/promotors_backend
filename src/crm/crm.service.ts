@@ -24,6 +24,7 @@ export class CrmService {
         const query = this.leadRepository.createQueryBuilder('lead');
 
         if (search) {
+            // Filtrar leads por nombre o email
             query.where('lead.nombre ILIKE :search', { search: `%${search}%` })
                 .orWhere('lead.email ILIKE :search', { search: `%${search}%` });
         }

@@ -11,6 +11,7 @@ export class SystemLogsService {
     ) { }
 
     async create(createSystemLogDto: CreateSystemLogDto): Promise<SystemLog> {
+        // Guardar log en MongoDB
         const createdLog = new this.systemLogModel(createSystemLogDto);
         return createdLog.save();
     }

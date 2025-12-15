@@ -9,6 +9,7 @@ export class CartsController {
 
     @Post()
     async updateCart(@Body() dto: CreateCartDto) {
+        // Crear o actualizar el carrito de compras del usuario
         const cart = await this.cartsService.createOrUpdate(dto);
         return new SuccessResponseDto('Cart updated successfully', cart);
     }
@@ -21,6 +22,7 @@ export class CartsController {
 
     @Delete('user/:id')
     async delete(@Param('id', ParseIntPipe) id: number) {
+        // Vaciar el carrito del usuario
         await this.cartsService.delete(id);
         return new SuccessResponseDto('Cart cleared successfully', null);
     }

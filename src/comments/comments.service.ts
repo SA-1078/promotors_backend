@@ -11,6 +11,7 @@ export class CommentsService {
     ) { }
 
     async create(createCommentDto: CreateCommentDto): Promise<Comment> {
+        // Crear instancia del modelo Mongoose y guardar
         const createdComment = new this.commentModel(createCommentDto);
         return createdComment.save();
     }
@@ -20,6 +21,7 @@ export class CommentsService {
     }
 
     async findByMotorcycle(motorcycleId: number): Promise<Comment[]> {
+        // Buscar comentarios de una moto específica ordenados por fecha descendente
         return this.commentModel.find({ motocicleta_id: motorcycleId }).sort({ fecha: -1 }).exec();
     }
 }

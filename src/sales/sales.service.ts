@@ -19,6 +19,7 @@ export class SalesService {
     ) { }
 
     async create(createSaleDto: CreateSaleDto): Promise<Sale> {
+        // Iniciar transacción para asegurar integridad (Venta + Detalles)
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -26,9 +27,11 @@ export class SalesService {
         try {
             const { detalles, ...saleData } = createSaleDto;
 
+            // 1. Guardar la cabecera de la venta
             const sale = queryRunner.manager.create(Sale, saleData);
             const savedSale = await queryRunner.manager.save(sale);
 
+            // 2. Crear y guardar los detalles de la venta relacionándolos con la cabecera
             const saleDetails = detalles.map(detail =>
                 queryRunner.manager.create(SaleDetail, { ...detail, venta: savedSale })
             );
@@ -36,18 +39,22 @@ export class SalesService {
             await queryRunner.manager.save(saleDetails);
             savedSale.detalles = saleDetails;
 
+            // Confirmar transacción si todo sale bien
             await queryRunner.commitTransaction();
             return savedSale;
         } catch (err) {
+            // Revertir cambios si algo falla
             await queryRunner.rollbackTransaction();
             throw err;
         } finally {
+            // Liberar recursos
             await queryRunner.release();
         }
     }
 
     async findAll(queryDto: QueryDto): Promise<Pagination<Sale>> {
         const { page, limit } = queryDto;
+        // Consultar ventas con relaciones completas: usuario, detalles y motocicleta en cada detalle
         const query = this.saleRepository.createQueryBuilder('sale')
             .leftJoinAndSelect('sale.usuario', 'user')
             .leftJoinAndSelect('sale.detalles', 'details')

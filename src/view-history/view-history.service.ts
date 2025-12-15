@@ -13,6 +13,8 @@ export class ViewHistoryService {
     async addView(addViewDto: AddViewDto): Promise<ViewHistory> {
         const { usuario_id, motocicleta_id } = addViewDto;
 
+        // Actualizar documento del usuario agregando la nueva vista al array 'visto'
+        // upsert: true crea el documento si no existe
         return this.viewHistoryModel.findOneAndUpdate(
             { usuario_id },
             {
@@ -27,6 +29,7 @@ export class ViewHistoryService {
     async addSearch(addSearchDto: AddSearchDto): Promise<ViewHistory> {
         const { usuario_id, termino } = addSearchDto;
 
+        // Actualizar documento agregando término al array 'busquedas'
         return this.viewHistoryModel.findOneAndUpdate(
             { usuario_id },
             {

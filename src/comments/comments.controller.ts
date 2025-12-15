@@ -9,6 +9,7 @@ export class CommentsController {
 
     @Post()
     async create(@Body() dto: CreateCommentDto) {
+        // Guardar nuevo comentario
         const comment = await this.commentsService.create(dto);
         return new SuccessResponseDto('Comment added successfully', comment);
     }
@@ -21,6 +22,7 @@ export class CommentsController {
 
     @Get('motorcycle/:id')
     async findByMotorcycle(@Param('id', ParseIntPipe) id: number) {
+        // Filtrar comentarios por ID de motocicleta
         const comments = await this.commentsService.findByMotorcycle(id);
         return new SuccessResponseDto('Motorcycle comments retrieved successfully', comments);
     }

@@ -9,6 +9,7 @@ export class SystemLogsController {
 
     @Post()
     async create(@Body() dto: CreateSystemLogDto) {
+        // Registrar evento del sistema
         const log = await this.systemLogsService.create(dto);
         return new SuccessResponseDto('Log created successfully', log);
     }

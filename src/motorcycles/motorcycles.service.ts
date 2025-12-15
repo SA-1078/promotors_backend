@@ -21,10 +21,12 @@ export class MotorcyclesService {
 
     async findAll(queryDto: QueryDto): Promise<Pagination<Motorcycle>> {
         const { page, limit, search } = queryDto;
+        // QueryBuilder para consultas complejas con relaciones
         const query = this.motorcycleRepository.createQueryBuilder('motorcycle')
             .leftJoinAndSelect('motorcycle.categoria', 'category');
 
         if (search) {
+            // Búsqueda en múltiples columnas (nombre, marca, modelo)
             query.where('motorcycle.nombre ILIKE :search', { search: `%${search}%` })
                 .orWhere('motorcycle.marca ILIKE :search', { search: `%${search}%` })
                 .orWhere('motorcycle.modelo ILIKE :search', { search: `%${search}%` });
@@ -36,6 +38,7 @@ export class MotorcyclesService {
     }
 
     async findOne(id: number): Promise<Motorcycle | null> {
+        // Buscar moto por ID incluyendo la relación con categoría
         return await this.motorcycleRepository.findOne({
             where: { id_moto: id },
             relations: ['categoria'],

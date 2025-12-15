@@ -21,15 +21,18 @@ export class InventoryService {
 
     async findAll(queryDto: QueryDto): Promise<Pagination<Inventory>> {
         const { page, limit } = queryDto;
+        // Consultar inventario con datos de la moto relacionada
         const query = this.inventoryRepository.createQueryBuilder('inventory')
             .leftJoinAndSelect('inventory.motorcycle', 'motorcycle');
 
+        // Ordenar por fecha de creación descendente (asumiendo id autoincremental refleja tiempo)
         query.orderBy('inventory.id_inventario', 'DESC');
 
         return await paginate<Inventory>(query, { page, limit });
     }
 
     async findOne(id: number): Promise<Inventory | null> {
+        // Obtener detalle de registro de inventario específico
         return await this.inventoryRepository.findOne({
             where: { id_inventario: id },
             relations: ['motorcycle'],

@@ -14,6 +14,7 @@ import { SystemLogsModule } from './system-logs/system-logs.module';
 import { CommentsModule } from './comments/comments.module';
 import { CartsModule } from './carts/carts.module';
 import { ViewHistoryModule } from './view-history/view-history.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { ViewHistoryModule } from './view-history/view-history.module';
     CommentsModule,
     CartsModule,
     ViewHistoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

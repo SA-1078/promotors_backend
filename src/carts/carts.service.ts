@@ -13,14 +13,15 @@ export class CartsService {
     async createOrUpdate(createCartDto: CreateCartDto): Promise<Cart> {
         const { usuario_id, items } = createCartDto;
 
-        // Check if cart exists for user
+        // Verificar si el usuario ya tiene un carrito
         let cart = await this.cartModel.findOne({ usuario_id });
 
         if (cart) {
-            // Replace items or merge? Usually replace entire cart state from frontend
+            // Si existe, actualizar los items (reemplazo completo del estado local)
             cart.items = items as any;
             return cart.save();
         } else {
+            // Si no existe, crear nuevo carrito
             const newCart = new this.cartModel(createCartDto);
             return newCart.save();
         }

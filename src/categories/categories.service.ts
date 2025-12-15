@@ -24,6 +24,7 @@ export class CategoriesService {
         const query = this.categoryRepository.createQueryBuilder('category');
 
         if (search) {
+            // Filtrar categorías por nombre
             query.where('category.nombre ILIKE :search', { search: `%${search}%` });
         }
 

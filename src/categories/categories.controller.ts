@@ -1,7 +1,10 @@
 import {
     Controller, Get, Post, Put, Delete, Body, Param,
-    Query, NotFoundException, ParseIntPipe
+    Query, NotFoundException, ParseIntPipe, UseGuards
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -14,6 +17,8 @@ import { QueryDto } from '../common/dto/query.dto';
 export class CategoriesController {
     constructor(private readonly categoriesService: CategoriesService) { }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin', 'empleado')
     @Post()
     async create(@Body() dto: CreateCategoryDto) {
         const category = await this.categoriesService.create(dto);
@@ -34,6 +39,8 @@ export class CategoriesController {
         return new SuccessResponseDto('Category retrieved successfully', category);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin', 'empleado')
     @Put(':id')
     async update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateCategoryDto) {
         const category = await this.categoriesService.update(id, dto);
@@ -41,8 +48,11 @@ export class CategoriesController {
         return new SuccessResponseDto('Category updated successfully', category);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
     @Delete(':id')
     async remove(@Param('id', ParseIntPipe) id: number) {
+        // Solo el administrador puede eliminar categorías
         const category = await this.categoriesService.remove(id);
         if (!category) throw new NotFoundException('Category not found');
         return new SuccessResponseDto('Category deleted successfully', category);

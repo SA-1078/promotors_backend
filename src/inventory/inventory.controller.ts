@@ -1,7 +1,10 @@
 import {
     Controller, Get, Post, Put, Delete, Body, Param,
-    Query, NotFoundException, ParseIntPipe
+    Query, NotFoundException, ParseIntPipe, UseGuards
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
 import { InventoryService } from './inventory.service';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { UpdateInventoryDto } from './dto/update-inventory.dto';
@@ -14,14 +17,18 @@ import { QueryDto } from '../common/dto/query.dto';
 export class InventoryController {
     constructor(private readonly inventoryService: InventoryService) { }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin', 'empleado')
     @Post()
     async create(@Body() dto: CreateInventoryDto) {
+        // Registrar nuevo movimiento de inventario (entrada/salida se define en el DTO o lógica)
         const inventory = await this.inventoryService.create(dto);
         return new SuccessResponseDto('Inventory item created successfully', inventory);
     }
 
     @Get()
     async findAll(@Query() query: QueryDto): Promise<SuccessResponseDto<Pagination<Inventory>>> {
+        // Listar historial de inventario paginado
         if (query.limit && query.limit > 100) query.limit = 100;
         const result = await this.inventoryService.findAll(query);
         return new SuccessResponseDto('Inventory items retrieved successfully', result);
@@ -34,6 +41,8 @@ export class InventoryController {
         return new SuccessResponseDto('Inventory item retrieved successfully', inventory);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin', 'empleado')
     @Put(':id')
     async update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateInventoryDto) {
         const inventory = await this.inventoryService.update(id, dto);
@@ -41,6 +50,8 @@ export class InventoryController {
         return new SuccessResponseDto('Inventory item updated successfully', inventory);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
     @Delete(':id')
     async remove(@Param('id', ParseIntPipe) id: number) {
         const inventory = await this.inventoryService.remove(id);

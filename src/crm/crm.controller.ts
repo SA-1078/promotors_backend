@@ -16,6 +16,7 @@ export class CrmController {
 
     @Post()
     async create(@Body() dto: CreateLeadDto) {
+        // Registrar posible cliente (Lead)
         const lead = await this.crmService.create(dto);
         return new SuccessResponseDto('Lead created successfully', lead);
     }

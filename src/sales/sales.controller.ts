@@ -16,6 +16,7 @@ export class SalesController {
 
     @Post()
     async create(@Body() dto: CreateSaleDto) {
+        // Registrar venta incluyendo sus detalles (productos, cantidades)
         const sale = await this.salesService.create(dto);
         return new SuccessResponseDto('Sale created successfully', sale);
     }
