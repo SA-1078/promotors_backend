@@ -33,7 +33,8 @@ export class UsersService {
             return await this.userRepository.save(user);
         } catch (err) {
             console.error('Error creating user:', err);
-            return null;
+            // Re-lanzar error para que el usuario sepa que falló (ej: email duplicado, datos faltantes)
+            throw err;
         }
     }
 
@@ -129,7 +130,7 @@ export class UsersService {
             return await this.userRepository.remove(user);
         } catch (err) {
             console.error('Error deleting user:', err);
-            return null;
+            throw err;
         }
     }
 }

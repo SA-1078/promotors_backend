@@ -10,13 +10,15 @@ import { Pagination } from 'nestjs-typeorm-paginate';
 import { Lead } from './lead.entity';
 import { QueryDto } from '../common/dto/query.dto';
 
+
+// CRM = crm_lead posible cliente o interesado
+
 @Controller('crm')
 export class CrmController {
     constructor(private readonly crmService: CrmService) { }
 
     @Post()
     async create(@Body() dto: CreateLeadDto) {
-        // Registrar posible cliente (Lead)
         const lead = await this.crmService.create(dto);
         return new SuccessResponseDto('Lead created successfully', lead);
     }
