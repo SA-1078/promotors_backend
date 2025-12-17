@@ -13,7 +13,6 @@ export class CreateSaleDetailDto {
     @Min(0)
     precio_unitario: number;
 
-    // subtotal calculated in backend usually, but can be passed
     @IsNumber()
     @Min(0)
     subtotal: number;

@@ -11,7 +11,6 @@ export class SystemLogsService {
     ) { }
 
     async create(createSystemLogDto: CreateSystemLogDto): Promise<SystemLog> {
-        // Guardar log en MongoDB
         const createdLog = new this.systemLogModel(createSystemLogDto);
         return createdLog.save();
     }
@@ -20,7 +19,6 @@ export class SystemLogsService {
         return this.systemLogModel.find().sort({ fecha: -1 }).limit(100).exec();
     }
 
-    // Usually logs are append-only, but adding basic findOne if needed
     async findByUser(userId: number): Promise<SystemLog[]> {
         return this.systemLogModel.find({ usuario_id: userId }).exec();
     }
