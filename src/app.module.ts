@@ -15,6 +15,7 @@ import { CommentsModule } from './comments/comments.module';
 import { CartsModule } from './carts/carts.module';
 import { ViewHistoryModule } from './view-history/view-history.module';
 import { AuthModule } from './auth/auth.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { AuthModule } from './auth/auth.module';
     CartsModule,
     ViewHistoryModule,
     AuthModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

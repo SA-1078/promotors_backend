@@ -7,6 +7,8 @@ import { SaleDetail } from './sale-detail.entity';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
 import { QueryDto } from '../common/dto/query.dto';
+import { SystemLogsService } from '../system-logs/system-logs.service';
+import { InventoryService } from '../inventory/inventory.service';
 
 @Injectable()
 export class SalesService {
@@ -15,7 +17,9 @@ export class SalesService {
         private readonly saleRepository: Repository<Sale>,
         @InjectRepository(SaleDetail)
         private readonly saleDetailRepository: Repository<SaleDetail>,
-        private dataSource: DataSource,
+        private readonly dataSource: DataSource,
+        private readonly systemLogsService: SystemLogsService,
+        private readonly inventoryService: InventoryService,
     ) { }
 
     async create(createSaleDto: CreateSaleDto): Promise<Sale> {
@@ -32,15 +36,27 @@ export class SalesService {
             const savedSale = await queryRunner.manager.save(sale);
 
             // 2. Crear y guardar los detalles de la venta relacionándolos con la cabecera
-            const saleDetails = detalles.map(detail =>
-                queryRunner.manager.create(SaleDetail, { ...detail, venta: savedSale })
-            );
+            const saleDetails: SaleDetail[] = [];
+            for (const detail of detalles) {
+                // Reducir stock en inventario (lanza error si no hay stock)
+                await this.inventoryService.reduceStock(detail.id_moto, detail.cantidad);
+
+                saleDetails.push(queryRunner.manager.create(SaleDetail, { ...detail, venta: savedSale }));
+            }
 
             await queryRunner.manager.save(saleDetails);
             savedSale.detalles = saleDetails;
 
             // Confirmar transacción si todo sale bien
             await queryRunner.commitTransaction();
+
+            // Automate: Log sale creation
+            await this.systemLogsService.create({
+                usuario_id: savedSale.id_usuario,
+                accion: 'SALE_CREATED',
+                detalles: { sale_id: savedSale.id_venta, total: savedSale.total }
+            }).catch(err => console.error('Error logging sale creation', err));
+
             return savedSale;
         } catch (err) {
             // Revertir cambios si algo falla
@@ -88,6 +104,15 @@ export class SalesService {
         const sale = await this.findOne(id);
         if (!sale) return null;
 
-        return await this.saleRepository.remove(sale);
+        const result = await this.saleRepository.remove(sale);
+
+        // Automate: Log sale deletion
+        await this.systemLogsService.create({
+            usuario_id: sale.id_usuario,
+            accion: 'SALE_DELETED',
+            detalles: { sale_id: id }
+        }).catch(err => console.error('Error logging sale deletion', err));
+
+        return result;
     }
 }

@@ -10,5 +10,6 @@ import { SystemLogsController } from './system-logs.controller';
     ],
     controllers: [SystemLogsController],
     providers: [SystemLogsService],
+    exports: [SystemLogsService],
 })
 export class SystemLogsModule { }

@@ -10,5 +10,6 @@ import { ViewHistoryController } from './view-history.controller';
     ],
     controllers: [ViewHistoryController],
     providers: [ViewHistoryService],
+    exports: [ViewHistoryService],
 })
 export class ViewHistoryModule { }

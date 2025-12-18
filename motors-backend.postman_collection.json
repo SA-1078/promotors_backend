@@ -925,7 +925,25 @@
                     "response": []
                 },
                 {
-                    "name": "Get User History",
+                    "name": "Get My History",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/view-history/history",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "view-history",
+                                "history"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User History (Admin)",
                     "request": {
                         "method": "GET",
                         "header": [],
@@ -938,6 +956,38 @@
                                 "view-history",
                                 "user",
                                 "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Mail",
+            "item": [
+                {
+                    "name": "Send Gmail",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"to\": \"destinatario@test.com\",\n    \"subject\": \"Prueba Gmail NestJS\",\n    \"message\": \"<h1>Hola!</h1><p>Este es un correo de prueba enviado desde NestJS.</p>\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/mail/gmail",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "mail",
+                                "gmail"
                             ]
                         }
                     },

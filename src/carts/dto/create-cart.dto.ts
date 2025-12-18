@@ -1,4 +1,4 @@
-import { IsArray, IsInt, IsNotEmpty, IsNumber, Min, ValidateNested } from 'class-validator';
+import { IsArray, IsInt, IsNotEmpty, IsNumber, Min, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CartItemDto {
@@ -11,11 +11,13 @@ export class CartItemDto {
 
     @IsNumber()
     @Min(0)
-    precio_unitario: number;
+    @IsOptional()
+    precio_unitario?: number;
 
     @IsNumber()
     @Min(0)
-    subtotal: number;
+    @IsOptional()
+    subtotal?: number;
 }
 
 export class CreateCartDto {

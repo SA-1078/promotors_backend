@@ -53,4 +53,16 @@ export class InventoryService {
 
         return await this.inventoryRepository.remove(inventory);
     }
+
+    async reduceStock(motoId: number, quantity: number): Promise<void> {
+        const inventory = await this.inventoryRepository.findOne({ where: { id_moto: motoId } });
+        if (!inventory) {
+            throw new Error(`Inventory not found for motorcycle ID ${motoId}`);
+        }
+        if (inventory.stock_actual < quantity) {
+            throw new Error(`Insufficient stock for motorcycle ID ${motoId}. Available: ${inventory.stock_actual}, Requested: ${quantity}`);
+        }
+        inventory.stock_actual -= quantity;
+        await this.inventoryRepository.save(inventory);
+    }
 }

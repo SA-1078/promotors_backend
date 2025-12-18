@@ -10,7 +10,7 @@ export class SaleDetail {
     @Column()
     id_venta: number;
 
-    @ManyToOne(() => Sale, (sale) => sale.detalles)
+    @ManyToOne(() => Sale, (sale) => sale.detalles, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'id_venta' })
     venta: Sale;
 

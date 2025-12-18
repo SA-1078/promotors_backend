@@ -4,12 +4,14 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
+import { SystemLogsService } from '../system-logs/system-logs.service';
 
 @Injectable()
 export class AuthService {
     constructor(
         private usersService: UsersService,
         private jwtService: JwtService,
+        private systemLogsService: SystemLogsService,
     ) { }
 
     async validateUser(email: string, pass: string): Promise<any> {
@@ -30,6 +32,14 @@ export class AuthService {
         if (!user) {
             throw new UnauthorizedException('Credenciales inválidas');
         }
+
+        // Automate: Log successful login
+        await this.systemLogsService.create({
+            usuario_id: user.id_usuario,
+            accion: 'LOGIN',
+            detalles: { email: user.email, role: user.rol }
+        }).catch(err => console.error('Error creating log', err));
+
         // Crear payload del token
         const payload = { email: user.email, sub: user.id_usuario, role: user.rol };
         return {
