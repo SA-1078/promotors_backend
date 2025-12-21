@@ -13,11 +13,11 @@ export class CartsService {
     async createOrUpdate(createCartDto: CreateCartDto): Promise<Cart> {
         const { usuario_id, items } = createCartDto;
 
-        // Check if cart exists for user
+        
         let cart = await this.cartModel.findOne({ usuario_id });
 
         if (cart) {
-            // Replace items or merge? Usually replace entire cart state from frontend
+            
             cart.items = items as any;
             return cart.save();
         } else {
