@@ -21,7 +21,7 @@ export class UsersService {
     async create(createUserDto: CreateUserDto): Promise<User | null> {
         try {
             const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-            // Map DTO 'password' to Entity 'password_hash'
+           
             const { password, ...userData } = createUserDto;
             const user = this.userRepository.create({
                 ...userData,
