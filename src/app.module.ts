@@ -27,7 +27,7 @@ import { ViewHistoryModule } from './view-history/view-history.module';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Use carefully in production
+      synchronize: true, 
     }),
     UsersModule,
     CategoriesModule,
