@@ -65,12 +65,12 @@ export class SalesService {
         });
     }
 
-    // Update simple fields usually, complex detail updates require more logic
+    
     async update(id: number, updateSaleDto: UpdateSaleDto): Promise<Sale | null> {
         const sale = await this.findOne(id);
         if (!sale) return null;
 
-        // Separate logic for details update if needed, for now just update main fields
+        
         const { detalles, ...simpleData } = updateSaleDto;
         Object.assign(sale, simpleData);
 
