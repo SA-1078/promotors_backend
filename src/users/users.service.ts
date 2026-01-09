@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException, BadRequestException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {
@@ -13,12 +13,14 @@ import { QueryDto } from '../common/dto/query.dto';
 
 @Injectable()
 export class UsersService {
+    private readonly logger = new Logger(UsersService.name);
+
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
     ) { }
 
-    async create(createUserDto: CreateUserDto): Promise<User | null> {
+    async create(createUserDto: CreateUserDto): Promise<User> {
         try {
             // Hashear la contraseña antes de guardarla
             const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
@@ -32,15 +34,14 @@ export class UsersService {
             // Guardar en base de datos
             return await this.userRepository.save(user);
         } catch (err) {
-            console.error('Error creating user:', err);
-            // Re-lanzar error para que el usuario sepa que falló (ej: email duplicado, datos faltantes)
-            throw err;
+            this.logger.error('Error creating user', err.stack);
+            throw new InternalServerErrorException('Failed to create user');
         }
     }
 
     async findAll(
         queryDto: QueryDto,
-    ): Promise<Pagination<User> | null> {
+    ): Promise<Pagination<User>> {
         try {
             const { page, limit, search, searchField, sort, order } = queryDto;
 
@@ -71,8 +72,12 @@ export class UsersService {
                 }
             }
 
-            // Ordenamiento dinámico
+            // Ordenamiento dinámico con validación para prevenir SQL injection
             if (sort) {
+                const allowedSortFields = ['id_usuario', 'nombre', 'email', 'telefono', 'rol', 'fecha_registro'];
+                if (!allowedSortFields.includes(sort)) {
+                    throw new BadRequestException(`Invalid sort field. Allowed fields: ${allowedSortFields.join(', ')}`);
+                }
                 query.orderBy(`user.${sort}`, (order ?? 'ASC') as 'ASC' | 'DESC');
             } else {
                 query.orderBy('user.id_usuario', 'DESC');
@@ -81,17 +86,27 @@ export class UsersService {
             // Retornar resultados paginados
             return await paginate<User>(query, { page, limit });
         } catch (err) {
-            console.error('Error retrieving users:', err);
-            return null;
+            if (err instanceof BadRequestException) {
+                throw err;
+            }
+            this.logger.error('Error retrieving users', err.stack);
+            throw new InternalServerErrorException('Failed to retrieve users');
         }
     }
 
-    async findOne(id: number): Promise<User | null> {
+    async findOne(id: number): Promise<User> {
         try {
-            return await this.userRepository.findOne({ where: { id_usuario: id } });
+            const user = await this.userRepository.findOne({ where: { id_usuario: id } });
+            if (!user) {
+                throw new NotFoundException(`User with ID ${id} not found`);
+            }
+            return user;
         } catch (err) {
-            console.error('Error finding user:', err);
-            return null;
+            if (err instanceof NotFoundException) {
+                throw err;
+            }
+            this.logger.error(`Error finding user with ID ${id}`, err.stack);
+            throw new InternalServerErrorException('Failed to find user');
         }
     }
 
@@ -99,15 +114,17 @@ export class UsersService {
         try {
             return await this.userRepository.findOne({ where: { email } });
         } catch (err) {
-            console.error('Error finding user by email:', err);
-            return null;
+            this.logger.error(`Error finding user by email ${email}`, err.stack);
+            throw new InternalServerErrorException('Failed to find user by email');
         }
     }
 
-    async update(id: number, updateUserDto: UpdateUserDto): Promise<User | null> {
+    async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
         try {
             const user = await this.userRepository.findOne({ where: { id_usuario: id } });
-            if (!user) return null;
+            if (!user) {
+                throw new NotFoundException(`User with ID ${id} not found`);
+            }
 
             if (updateUserDto.password) {
                 user.password_hash = await bcrypt.hash(updateUserDto.password, 10);
@@ -117,20 +134,24 @@ export class UsersService {
             Object.assign(user, updateUserDto);
             return await this.userRepository.save(user);
         } catch (err) {
-            console.error('Error updating user:', err);
-            return null;
+            if (err instanceof NotFoundException) {
+                throw err;
+            }
+            this.logger.error(`Error updating user with ID ${id}`, err.stack);
+            throw new InternalServerErrorException('Failed to update user');
         }
     }
 
-    async remove(id: number): Promise<User | null> {
+    async remove(id: number): Promise<User> {
         try {
             const user = await this.findOne(id);
-            if (!user) return null;
-
             return await this.userRepository.remove(user);
         } catch (err) {
-            console.error('Error deleting user:', err);
-            throw err;
+            if (err instanceof NotFoundException) {
+                throw err;
+            }
+            this.logger.error(`Error deleting user with ID ${id}`, err.stack);
+            throw new InternalServerErrorException('Failed to delete user');
         }
     }
 }

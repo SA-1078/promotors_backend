@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import { paginate, Pagination } from 'nestjs-typeorm-paginate';
@@ -12,6 +12,8 @@ import { InventoryService } from '../inventory/inventory.service';
 
 @Injectable()
 export class SalesService {
+    private readonly logger = new Logger(SalesService.name);
+
     constructor(
         @InjectRepository(Sale)
         private readonly saleRepository: Repository<Sale>,
@@ -55,12 +57,13 @@ export class SalesService {
                 usuario_id: savedSale.id_usuario,
                 accion: 'SALE_CREATED',
                 detalles: { sale_id: savedSale.id_venta, total: savedSale.total }
-            }).catch(err => console.error('Error logging sale creation', err));
+            }).catch(err => this.logger.error('Error logging sale creation', err.stack));
 
             return savedSale;
         } catch (err) {
             // Revertir cambios si algo falla
             await queryRunner.rollbackTransaction();
+            this.logger.error('Error creating sale', err.stack);
             throw err;
         } finally {
             // Liberar recursos
@@ -111,7 +114,7 @@ export class SalesService {
             usuario_id: sale.id_usuario,
             accion: 'SALE_DELETED',
             detalles: { sale_id: id }
-        }).catch(err => console.error('Error logging sale deletion', err));
+        }).catch(err => this.logger.error('Error logging sale deletion', err.stack));
 
         return result;
     }

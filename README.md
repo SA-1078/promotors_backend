@@ -14,19 +14,17 @@ Backend developed with NestJS, PostgreSQL (TypeORM) and MongoDB (Mongoose).
 ## Installation
 
 1. Clone the repository.
-   ```bash
-   git clone <repo-url>
+   git clone 
    cd promotors_backend
-   ```
+
 
 2. Install dependencies.
-   ```bash
    npm install
-   ```
+
 
 3. Configure Environment.
    Create a `.env` file in the root directory:
-   ```env
+   
    DB_HOST=localhost
    DB_PORT=5432
    DB_USER=postgres
@@ -34,13 +32,11 @@ Backend developed with NestJS, PostgreSQL (TypeORM) and MongoDB (Mongoose).
    DB_NAME=db_motors_eco
    MONGO_URI=mongodb://localhost:27017/promotors_logs
    JWT_SECRET=supersecretkey
-   ```
+   
 
 4. Run the application.
-   ```bash
    # Development
    npm run start:dev
-   ```
 
 ## API Documentation
 

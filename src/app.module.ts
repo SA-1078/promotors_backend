@@ -29,7 +29,7 @@ import { MailModule } from './mail/mail.module';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Use carefully in production
+      synchronize: process.env.NODE_ENV !== 'production', // Desactivado en producción para prevenir pérdida de datos
     }),
     UsersModule,
     CategoriesModule,

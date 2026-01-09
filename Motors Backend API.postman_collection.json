@@ -1,0 +1,1079 @@
+{
+	"info": {
+		"_postman_id": "60130b0c-2813-4b19-be62-ad984e96a1b5",
+		"name": "Motors Backend API",
+		"description": "Collection to test Motors Backend endpoints (Verified & Merged)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44934855",
+		"_collection_link": "https://santiago-7119046.postman.co/workspace/Santiago's-Workspace~25dced05-222c-4624-8d85-78300fd0af37/collection/44934855-60130b0c-2813-4b19-be62-ad984e96a1b5?action=share&source=collection_link&creator=44934855"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.access_token) {",
+									"    pm.collectionVariables.set(\"token\", jsonData.data.access_token);",
+									"    console.log(\"Token updated successfully\");",
+									"} else {",
+									"    console.log(\"Login failed or token missing\");",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"santiago@admin.com\",\n    \"password\": \"2007\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Santiago Admin\",\r\n    \"email\": \"santiago@admin.com\",\r\n    \"password\": \"2007\",\r\n    \"telefono\": \"0987654321\",\r\n    \"rol\": \"admin\",\r\n    \"codigo_secreto\": \"PROMOTORS_SECRET_2025\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}} /auth/register",
+							"host": [
+								"{{baseUrl}} "
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}} /users/1",
+							"host": [
+								"{{baseUrl}} "
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Alexander Lopez\",\r\n    \"email\": \"alexander@gmail.com\"\r\n}\r\n//Cualquier campo a actualizar incluyendo contraseña",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}} /users/7",
+							"host": [
+								"{{baseUrl}} "
+							],
+							"path": [
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}} /users/5",
+							"host": [
+								"{{baseUrl}} "
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Motos Deportivas para borrar\",\n    \"descripcion\": \"Motos Deportivas\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Deportivas Updated\",\n    \"descripcion\": \"Motos de alta velocidad Updated\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categories/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Motorcycles",
+			"item": [
+				{
+					"name": "Create Motorcycle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Honda CBR500R PARA BORRAR\",\n    \"marca\": \"Honda\",\n    \"modelo\": \"CBR500R\",\n    \"anio\": 2024,\n    \"precio\": 150000,\n    \"descripcion\": \"Moto deportiva ligera\",\n    \"id_categoria\": 1,\n    \"imagen_url\": \"https://motos.honda.com.ec/uploads/galeria/cb_500_r_lateral.png\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/motorcycles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motorcycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Motorcycles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motorcycles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motorcycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Motorcycle by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motorcycles/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motorcycles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Motorcycle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Honda CBR500R Updated\",\n    \"precio\": 155000,\n    \"descripcion\": \"Equilibrio entre rendimiento deportivo y facilidad\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/motorcycles/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motorcycles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Motorcycle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/motorcycles/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"motorcycles",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Create Inventory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_moto\": 1,\n    \"stock_actual\": 10,\n    \"ubicacion\": \"Bodega Central\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inventory",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventory",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Item (by id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventory/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Inventory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"stock_actual\": 20,\n    \"ubicacion\": \"Bodega Norte UIO\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inventory/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Inventory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventory/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "Create Sale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_usuario\": 3,\n    \"total\": 150000,\n    \"metodo_pago\": \"Tarjeta\",\n    \"estado\": \"Completada\",\n    \"detalles\": [\n        {\n            \"id_moto\": 1,\n            \"cantidad\": 1,\n            \"precio_unitario\": 150000,\n            \"subtotal\": 150000\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sale by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sale",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"estado\": \"Entregada\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sale",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRM (interesados)",
+			"item": [
+				{
+					"name": "Create Lead",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Interesado 2\",\n    \"email\": \"alexander@gamil.com\",\n    \"telefono\": \"0999999999\",\n    \"mensaje\": \"Interesado en motos deportivas\",\n    \"estado\": \"Nuevo\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/crm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Leads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/crm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lead by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/crm/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crm",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Lead",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"santiago@gmail.com\",\n    \"estado\": \"Contactado\",\n    \"mensaje\": \"Se le envio cotizacion\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/crm/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crm",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Lead",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/crm/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"crm",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "System Logs (MongoDB)",
+			"item": [
+				{
+					"name": "Create Log",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario_id\": 8,\n    \"accion\": \"LOGIN_SUCCESS\",\n    \"ip\": \"127.0.0.1\",\n    \"detalles\": { \"browser\": \"Firefox\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/system-logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"system-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/system-logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"system-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Logs (by id user)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/system-logs/user/8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"system-logs",
+								"user",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments (MongoDB)",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario_id\": 7,\n    \"motocicleta_id\": 2,\n    \"calificacion\": 5,\n    \"comentario\": \"Excelente moto!\",\n    \"moderado\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments for Moto (filtro para admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/motorcycle/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments",
+								"motorcycle",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts (Carrito, MongoDB)",
+			"item": [
+				{
+					"name": "Create/Update Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario_id\": 3,\n    \"items\": [\n        {\n            \"motocicleta_id\": 2,\n            \"cantidad\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Cart (by id user)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/user/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/user/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "View History (MongoDB)",
+			"item": [
+				{
+					"name": "Add View",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario_id\": 8,\n    \"motocicleta_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/view-history/view",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"view-history",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Search History",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario_id\": 1,\n    \"termino_busqueda\": \"kawasaki\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/view-history/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"view-history",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/view-history/user/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"view-history",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/view-history/history",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"view-history",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mail",
+			"item": [
+				{
+					"name": "Send Gmail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"j.alexander.lopez.f@gmail.com\",\n    \"subject\": \"Prueba Gmail NestJS\",\n    \"message\": \"<h1>Hola!</h1><p>Este es un correo de prueba enviado desde NestJS el dia Jueves 18 de Diciembre de 2025.</p>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mail/gmail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mail",
+								"gmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
