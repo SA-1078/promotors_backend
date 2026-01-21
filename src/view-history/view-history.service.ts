@@ -61,4 +61,17 @@ export class ViewHistoryService {
             throw new InternalServerErrorException('Failed to retrieve user history');
         }
     }
+
+    async removeViewsByMotorcycleId(motoId: number): Promise<void> {
+        try {
+            // Eliminar la referencia a la moto de todos los registros de historial
+            await this.viewHistoryModel.updateMany(
+                { 'visto.motocicleta_id': motoId },
+                { $pull: { visto: { motocicleta_id: motoId } } }
+            ).exec();
+        } catch (err) {
+            // Log error but don't block the hard delete process if this fails (e.g. auth issues)
+            this.logger.warn(`Failed to remove views for motorcycle ID ${motoId}: ${err.message}`);
+        }
+    }
 }

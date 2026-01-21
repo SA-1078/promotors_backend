@@ -1,4 +1,5 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Req } from '@nestjs/common';
+import type { Request } from 'express';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -9,8 +10,9 @@ export class AuthController {
     constructor(private authService: AuthService) { }
 
     @Post('login')
-    async login(@Body() loginDto: LoginDto) {
-        const result = await this.authService.login(loginDto);
+    async login(@Body() loginDto: LoginDto, @Req() req: Request) {
+        const ip = req.ip || req.connection.remoteAddress || 'Unknown';
+        const result = await this.authService.login(loginDto, ip);
         return new SuccessResponseDto('Login successful', result);
     }
 

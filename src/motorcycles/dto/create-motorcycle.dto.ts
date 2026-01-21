@@ -31,4 +31,9 @@ export class CreateMotorcycleDto {
     @IsString()
     @IsNotEmpty()
     imagen_url: string;
+
+    @IsOptional()
+    @IsInt()
+    @Min(0)
+    stock?: number;
 }

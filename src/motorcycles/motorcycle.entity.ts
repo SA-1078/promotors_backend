@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, DeleteDateColumn } from 'typeorm';
 import { Category } from '../categories/category.entity';
 
 @Entity('motocicletas')
@@ -33,4 +33,7 @@ export class Motorcycle {
 
     @Column('text')
     imagen_url: string;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 }

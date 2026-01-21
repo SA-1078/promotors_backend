@@ -33,6 +33,10 @@ export class InventoryService {
             const query = this.inventoryRepository.createQueryBuilder('inventory')
                 .leftJoinAndSelect('inventory.motorcycle', 'motorcycle');
 
+            if (queryDto.withDeleted === 'true') {
+                query.withDeleted();
+            }
+
             // Ordenar por fecha de creación descendente (asumiendo id autoincremental refleja tiempo)
             query.orderBy('inventory.id_inventario', 'DESC');
 
@@ -94,6 +98,9 @@ export class InventoryService {
         try {
             const inventory = await this.inventoryRepository.findOne({ where: { id_moto: motoId } });
             if (!inventory) {
+                // If inventory doesn't exist, we can't reduce stock. 
+                // However, for consistency, maybe we should warn? 
+                // For now, let's throw NotFound to match previous logic
                 throw new NotFoundException(`Inventory not found for motorcycle ID ${motoId}`);
             }
             if (inventory.stock_actual < quantity) {
@@ -107,6 +114,20 @@ export class InventoryService {
             }
             this.logger.error(`Error reducing stock for motorcycle ID ${motoId}`, err.stack);
             throw new InternalServerErrorException('Failed to reduce stock');
+        }
+    }
+
+    async removeByMotorcycleId(motoId: number): Promise<void> {
+        try {
+            const inventory = await this.inventoryRepository.findOne({ where: { id_moto: motoId } });
+            if (inventory) {
+                await this.inventoryRepository.remove(inventory);
+            }
+        } catch (err) {
+            this.logger.error(`Error deleting inventory for motorcycle ID ${motoId}`, err.stack);
+            // We don't throw here to allow motorcycle deletion to proceed even if inventory deletion fails (or maybe we should?)
+            // Given the requirement "delete everything", if this fails, likely the Moto delete will fail too on constraints.
+            throw new InternalServerErrorException('Failed to delete inventory for motorcycle');
         }
     }
 }

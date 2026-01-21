@@ -26,7 +26,7 @@ export class AuthService {
         return null;
     }
 
-    async login(loginDto: LoginDto) {
+    async login(loginDto: LoginDto, ip: string = 'Unknown') {
         // Validar credenciales del usuario
         const user = await this.validateUser(loginDto.email, loginDto.password);
         if (!user) {
@@ -37,8 +37,9 @@ export class AuthService {
         await this.systemLogsService.create({
             usuario_id: user.id_usuario,
             accion: 'LOGIN',
+            ip: ip,
             detalles: { email: user.email, role: user.rol }
-        }).catch(err => console.error('Error creating log', err));
+        }).catch(() => { });
 
         // Crear payload del token
         const payload = { email: user.email, sub: user.id_usuario, role: user.rol };

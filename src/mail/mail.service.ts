@@ -30,7 +30,6 @@ export class MailService {
 
             return { messageId: info.messageId };
         } catch (error) {
-            console.error('Error al enviar correo:', error);
             throw new InternalServerErrorException(
                 `No se pudo enviar el correo: ${error.message || 'Error desconocido'}`
             );

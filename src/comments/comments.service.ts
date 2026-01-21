@@ -24,4 +24,8 @@ export class CommentsService {
         // Buscar comentarios de una moto específica ordenados por fecha descendente
         return this.commentModel.find({ motocicleta_id: motorcycleId }).sort({ fecha: -1 }).exec();
     }
+
+    async delete(id: string): Promise<any> {
+        return this.commentModel.findByIdAndDelete(id).exec();
+    }
 }

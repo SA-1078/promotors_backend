@@ -52,7 +52,7 @@ export class MotorcyclesController {
             const userId = this.getUserIdFromRequest(req);
             if (userId) {
                 this.viewHistoryService.addSearch({ usuario_id: userId, termino: query.search })
-                    .catch(err => console.error('Error logging search', err));
+                    .catch(() => { });
             }
         }
 
@@ -67,7 +67,7 @@ export class MotorcyclesController {
         const userId = this.getUserIdFromRequest(req);
         if (userId) {
             this.viewHistoryService.addView({ usuario_id: userId, motocicleta_id: id })
-                .catch(err => console.error('Error logging view', err));
+                .catch(() => { });
         }
 
         const motorcycle = await this.motorcyclesService.findOne(id);
@@ -87,9 +87,20 @@ export class MotorcyclesController {
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('admin')
     @Delete(':id')
-    async remove(@Param('id', ParseIntPipe) id: number) {
-        const motorcycle = await this.motorcyclesService.remove(id);
-        if (!motorcycle) throw new NotFoundException('Motorcycle not found');
-        return new SuccessResponseDto('Motorcycle deleted successfully', motorcycle);
+    async remove(
+        @Param('id', ParseIntPipe) id: number,
+        @Query('type') type: 'soft' | 'hard' = 'soft'
+    ) {
+        await this.motorcyclesService.remove(id, type);
+        const message = type === 'hard' ? 'Motorcycle permanently deleted' : 'Motorcycle deactivated';
+        return new SuccessResponseDto(message, null);
+    }
+
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
+    @Post(':id/restore')
+    async restore(@Param('id', ParseIntPipe) id: number) {
+        await this.motorcyclesService.restore(id);
+        return new SuccessResponseDto('Motorcycle restored successfully', null);
     }
 }

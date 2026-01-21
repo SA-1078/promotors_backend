@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseIntPipe, Delete } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { SuccessResponseDto } from '../common/dto/response.dto';
@@ -25,5 +25,11 @@ export class CommentsController {
         // Filtrar comentarios por ID de motocicleta
         const comments = await this.commentsService.findByMotorcycle(id);
         return new SuccessResponseDto('Motorcycle comments retrieved successfully', comments);
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: string) {
+        await this.commentsService.delete(id);
+        return new SuccessResponseDto('Comment deleted successfully', null);
     }
 }

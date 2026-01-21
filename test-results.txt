@@ -1,0 +1,2392 @@
+﻿
+> motors-backend@0.0.1 test
+> jest
+
+node.exe : PASS src/ca
+tegories/__tests__/cat
+egories.controller.spe
+c.ts
+En línea: 1 Carácter: 
+1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\Santiago\AppData\
+Roami ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (PASS src/c   
+ atego...troller.s    
+pec.ts:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+PASS src/comments/__te
+sts__/comments.control
+ler.spec.ts
+PASS src/auth/__tests_
+_/auth.service.spec.ts
+  ÔùÅ Console
+
+    console.error
+      Error creating 
+log Error: Log error
+          at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\auth\__tes
+ts__\auth.service.spec
+.ts:161:60)
+          at Promise.f
+inally.completed (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+          at new 
+Promise (<anonymous>)
+          at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+          at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+          at processTi
+cksAndRejections (node
+:internal/process/task
+_queues:105:5)
+          at _runTest 
+(C:\Users\Santiago\Doc
+uments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+          at C:\Users\
+Santiago\Documents\Pro
+yecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-circus\build\j
+estAdapterInit.js:849:
+7
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+          at run (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+          at runAndTra
+nsformResultsToJestFor
+mat (C:\Users\Santiago
+\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+          at 
+jestAdapter (C:\Users\
+Santiago\Documents\Pro
+yecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-circus\build\r
+unner.js:101:19)
+          at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+          at runTest (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:343:7)
+          at 
+Object.worker (C:\User
+s\Santiago\Documents\P
+royecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:497:12)
+
+    [0m [90m 39 
+|[39m             
+accion[33m:[39m [32
+m'LOGIN'[39m[33m,[3
+9m
+     [90m 40 |[39m  
+           
+detalles[33m:[39m { 
+email[33m:[39m user
+[33m.[39memail[33m,
+[39m role[33m:[39m 
+user[33m.[39mrol }
+    [31m[1m>[22m[3
+9m[90m 41 |[39m     
+    })[33m.[39m[36m
+catch[39m(err 
+[33m=>[39m console[
+33m.[39merror([32m'E
+rror creating 
+log'[39m[33m,[39m 
+err))[33m;[39m
+     [90m    |[39m  
+                      
+         
+[31m[1m^[22m[39m
+     [90m 42 |[39m
+     [90m 43 |[39m  
+       [90m// Crear 
+payload del token[39m
+     [90m 44 |[39m  
+       
+[36mconst[39m 
+payload [33m=[39m { 
+email[33m:[39m user
+[33m.[39memail[33m,
+[39m sub[33m:[39m us
+er[33m.[39mid_usuari
+o[33m,[39m 
+role[33m:[39m 
+user[33m.[39mrol 
+}[33m;[39m[0m
+
+      at auth/auth.ser
+vice.ts:41:33
+      at 
+AuthService.login (aut
+h/auth.service.ts:37:9
+)
+      at 
+Object.<anonymous> (au
+th/__tests__/auth.serv
+ice.spec.ts:163:28)
+
+PASS src/carts/__tests
+__/carts.service.spec.
+ts
+PASS src/crm/__tests__
+/crm.controller.spec.t
+s
+PASS src/auth/__tests_
+_/auth.controller.spec
+.ts
+PASS src/sales/__tests
+__/sales.controller.sp
+ec.ts
+PASS src/motorcycles/_
+_tests__/motorcycles.c
+ontroller.spec.ts
+PASS src/view-history/
+__tests__/view-history
+.controller.spec.ts
+[31m[Nest] 15168  - 
+[39m16/01/2026, 
+10:54:22 a.m. [31m  
+ERROR[39m [38;5;3m[U
+sersService] 
+[39m[31mError 
+creating user[39m
+Error: Hash error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\users\__te
+sts__\users.service.sp
+ec.ts:94:58)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/system-logs/_
+_tests__/system-logs.c
+ontroller.spec.ts
+[31m[Nest] 15168  - 
+[39m16/01/2026, 
+10:54:22 a.m. [31m  
+ERROR[39m [38;5;3m[U
+sersService] 
+[39m[31mError 
+finding user with ID 
+1[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\users\__te
+sts__\users.service.sp
+ec.ts:124:54)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+[31m[Nest] 15168  - 
+[39m16/01/2026, 
+10:54:22 a.m. [31m  
+ERROR[39m [38;5;3m[U
+sersService] 
+[39m[31mError 
+finding user by email 
+test@example.com[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\users\__te
+sts__\users.service.sp
+ec.ts:153:54)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+[31m[Nest] 15168  - 
+[39m16/01/2026, 
+10:54:23 a.m. [31m  
+ERROR[39m [38;5;3m[U
+sersService] 
+[39m[31mError 
+updating user with ID 
+1[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\users\__te
+sts__\users.service.sp
+ec.ts:200:54)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/users/__tests
+__/users.service.spec.
+ts
+[31m[Nest] 5232  - 
+[39m16/01/2026, 
+10:54:23 a.m. [31m  
+ERROR[39m [38;5;3m[M
+otorcyclesService] 
+[39m[31mError 
+creating 
+motorcycle[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\motorcycle
+s\__tests__\motorcycle
+s.service.spec.ts:106:
+23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as create] (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at MotorcyclesServ
+ice.create (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\src\motorcycle
+s\motorcycles.service.
+ts:21:58)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\motorcycle
+s\__tests__\motorcycle
+s.service.spec.ts:109:
+34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+[31m[Nest] 5232  - 
+[39m16/01/2026, 
+10:54:23 a.m. [31m  
+ERROR[39m [38;5;3m[M
+otorcyclesService] 
+[39m[31mError 
+finding motorcycle 
+with ID 1[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\motorcycle
+s\__tests__\motorcycle
+s.service.spec.ts:190:
+54)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/motorcycles/_
+_tests__/motorcycles.s
+ervice.spec.ts
+PASS src/inventory/__t
+ests__/inventory.contr
+oller.spec.ts
+PASS src/carts/__tests
+__/carts.controller.sp
+ec.ts
+PASS src/users/__tests
+__/users.controller.sp
+ec.ts
+[31m[Nest] 17168  - 
+[39m16/01/2026, 
+10:54:23 a.m. [31m  
+ERROR[39m [38;5;3m[I
+nventoryService] 
+[39m[31mError 
+creating 
+inventory[39m
+Error: DB error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\inventory\
+__tests__\inventory.se
+rvice.spec.ts:102:23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as create] (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at InventoryServic
+e.create (C:\Users\San
+tiago\Documents\Proyec
+to Programacion 3er 
+Semestre SA\promotors_
+backend\src\inventory\
+inventory.service.ts:2
+1:56)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\inventory\
+__tests__\inventory.se
+rvice.spec.ts:105:34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/inventory/__t
+ests__/inventory.servi
+ce.spec.ts
+[31m[Nest] 5236  - 
+[39m16/01/2026, 
+10:54:24 a.m. [31m  
+ERROR[39m [38;5;3m[V
+iewHistoryService] 
+[39m[31mError 
+adding view to 
+history[39m
+Error: DB error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:51
+:23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as 
+findOneAndUpdate] (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at ViewHistoryServ
+ice.addView (C:\Users\
+Santiago\Documents\Pro
+yecto Programacion 
+3er Semestre SA\promot
+ors_backend\src\view-h
+istory\view-history.se
+rvice.ts:21:42)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:54
+:34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/mail/__tests_
+_/mail.controller.spec
+.ts
+[31m[Nest] 5236  - 
+[39m16/01/2026, 
+10:54:24 a.m. [31m  
+ERROR[39m [38;5;3m[V
+iewHistoryService] 
+[39m[31mError 
+adding search to 
+history[39m
+Error: DB error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:73
+:23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as 
+findOneAndUpdate] (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at ViewHistoryServ
+ice.addSearch (C:\User
+s\Santiago\Documents\P
+royecto Programacion 
+3er Semestre SA\promot
+ors_backend\src\view-h
+istory\view-history.se
+rvice.ts:41:42)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:76
+:34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+[31m[Nest] 5236  - 
+[39m16/01/2026, 
+10:54:24 a.m. [31m  
+ERROR[39m [38;5;3m[V
+iewHistoryService] 
+[39m[31mError 
+finding history for 
+user 1[39m
+Error: DB error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:95
+:23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as findOne] (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at ViewHistoryServ
+ice.findByUser (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\src\view-h
+istory\view-history.se
+rvice.ts:58:42)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\view-histo
+ry\__tests__\view-hist
+ory.service.spec.ts:98
+:34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/crm/__tests__
+/crm.service.spec.ts
+PASS src/view-history/
+__tests__/view-history
+.service.spec.ts
+PASS src/sales/__tests
+__/sales.service.spec.
+ts
+[31m[Nest] 13300  - 
+[39m16/01/2026, 
+10:54:24 a.m. [31m  
+ERROR[39m [38;5;3m[C
+ategoriesService] 
+[39m[31mError 
+creating category[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\categories
+\__tests__\categories.
+service.spec.ts:88:23)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:305:39
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:312:13)
+    at Object.mockCons
+tructor [as create] (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-mock\build\index.j
+s:102:19)
+    at CategoriesServi
+ce.create (C:\Users\Sa
+ntiago\Documents\Proye
+cto Programacion 3er 
+Semestre SA\promotors_
+backend\src\categories
+\categories.service.ts
+:21:54)
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\categories
+\__tests__\categories.
+service.spec.ts:91:34)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+[31m[Nest] 13300  - 
+[39m16/01/2026, 
+10:54:24 a.m. [31m  
+ERROR[39m [38;5;3m[C
+ategoriesService] 
+[39m[31mError 
+finding category with 
+ID 1[39m
+Error: Database error
+    at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\categories
+\__tests__\categories.
+service.spec.ts:162:54
+)
+    at Promise.finally
+.completed (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+    at new Promise 
+(<anonymous>)
+    at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+    at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+    at processTicksAnd
+Rejections (node:inter
+nal/process/task_queue
+s:105:5)
+    at _runTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+    at C:\Users\Santia
+go\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:849:7
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at _runTestsForDes
+cribeBlock (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+    at run (C:\Users\S
+antiago\Documents\Proy
+ecto Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+    at runAndTransform
+ResultsToJestFormat (C
+:\Users\Santiago\Docum
+ents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+    at jestAdapter (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\runne
+r.js:101:19)
+    at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+    at runTest (C:\Use
+rs\Santiago\Documents\
+Proyecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:343:7)
+    at Object.worker (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:497:12)
+PASS src/categories/__
+tests__/categories.ser
+vice.spec.ts
+PASS src/app.controlle
+r.spec.ts
+PASS src/mail/__tests_
+_/mail.service.spec.ts
+  ÔùÅ Console
+
+    console.error
+      Error al enviar 
+correo: Error: Mail 
+error
+          at 
+Object.<anonymous> (C:
+\Users\Santiago\Docume
+nts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\src\mail\__tes
+ts__\mail.service.spec
+.ts:45:56)
+          at Promise.f
+inally.completed (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1557:28)
+          at new 
+Promise (<anonymous>)
+          at 
+callAsyncCircusFn (C:\
+Users\Santiago\Documen
+ts\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1497:10)
+          at 
+_callCircusTest (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1007:40)
+          at processTi
+cksAndRejections (node
+:internal/process/task
+_queues:105:5)
+          at _runTest 
+(C:\Users\Santiago\Doc
+uments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:947:3)
+          at C:\Users\
+Santiago\Documents\Pro
+yecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-circus\build\j
+estAdapterInit.js:849:
+7
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:862:11)
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+          at _runTests
+ForDescribeBlock (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:857:11)
+          at run (C:\U
+sers\Santiago\Document
+s\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:761:3)
+          at runAndTra
+nsformResultsToJestFor
+mat (C:\Users\Santiago
+\Documents\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-circus\build\jestA
+dapterInit.js:1918:21)
+          at 
+jestAdapter (C:\Users\
+Santiago\Documents\Pro
+yecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-circus\build\r
+unner.js:101:19)
+          at 
+runTestInternal (C:\Us
+ers\Santiago\Documents
+\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:275:16)
+          at runTest (
+C:\Users\Santiago\Docu
+ments\Proyecto 
+Programacion 3er 
+Semestre SA\promotors_
+backend\node_modules\j
+est-runner\build\testW
+orker.js:343:7)
+          at 
+Object.worker (C:\User
+s\Santiago\Documents\P
+royecto Programacion 
+3er Semestre SA\promot
+ors_backend\node_modul
+es\jest-runner\build\t
+estWorker.js:497:12)
+
+    [0m [90m 31 
+|[39m             
+[36mreturn[39m { 
+messageId[33m:[39m i
+nfo[33m.[39mmessageI
+d }[33m;[39m
+     [90m 32 |[39m  
+       } 
+[36mcatch[39m 
+(error) {
+    [31m[1m>[22m[3
+9m[90m 33 |[39m     
+        console[33m.
+[39merror([32m'Error 
+al enviar correo:'[39
+m[33m,[39m 
+error)[33m;[39m
+     [90m    |[39m  
+                   
+[31m[1m^[22m[39m
+     [90m 34 |[39m  
+           
+[36mthrow[39m 
+[36mnew[39m [33mInt
+ernalServerErrorExcept
+ion[39m(
+     [90m 35 |[39m  
+               
+[32m`No se pudo 
+enviar el correo: 
+${error.message || 
+'Error 
+desconocido'}`[39m
+     [90m 36 |[39m  
+           
+)[33m;[39m[0m
+
+      at 
+MailService.sendMail (
+mail/mail.service.ts:3
+3:21)
+      at 
+Object.<anonymous> (ma
+il/__tests__/mail.serv
+ice.spec.ts:47:13)
+
+PASS src/system-logs/_
+_tests__/system-logs.s
+ervice.spec.ts
+PASS src/comments/__te
+sts__/comments.service
+.spec.ts
+
+Test Suites: 25 
+passed, 25 total
+Tests:       176 
+passed, 176 total
+Snapshots:   0 total
+Time:        8.806 s
+Ran all test suites.
