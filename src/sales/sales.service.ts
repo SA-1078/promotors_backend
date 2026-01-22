@@ -27,7 +27,6 @@ export class SalesService {
     ) { }
 
     async create(createSaleDto: CreateSaleDto): Promise<Sale> {
-        // Iniciar transacción para asegurar integridad (Venta + Detalles)
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -35,10 +34,10 @@ export class SalesService {
         try {
             const { detalles, ...saleData } = createSaleDto;
 
-            // 1. Guardar la cabecera de la venta
             const sale = queryRunner.manager.create(Sale, saleData);
             const savedSale = await queryRunner.manager.save(sale);
 
+<<<<<<< HEAD
             // 2. Crear y guardar los detalles de la venta relacionándolos con la cabecera
             const saleDetails: SaleDetail[] = [];
             for (const detail of detalles) {
@@ -51,11 +50,15 @@ export class SalesService {
                     venta: savedSale
                 }));
             }
+=======
+            const saleDetails = detalles.map(detail =>
+                queryRunner.manager.create(SaleDetail, { ...detail, venta: savedSale })
+            );
+>>>>>>> 01ff6b2756d37d40ccdb544b7863f24b81c958cb
 
             await queryRunner.manager.save(saleDetails);
             savedSale.detalles = saleDetails;
 
-            // Confirmar transacción si todo sale bien
             await queryRunner.commitTransaction();
 
             // Automate: Log sale creation (Non-blocking)
@@ -81,19 +84,16 @@ export class SalesService {
 
             return savedSale;
         } catch (err) {
-            // Revertir cambios si algo falla
             await queryRunner.rollbackTransaction();
             this.logger.error('Error creating sale', err.stack);
             throw err;
         } finally {
-            // Liberar recursos
             await queryRunner.release();
         }
     }
 
     async findAll(queryDto: QueryDto): Promise<Pagination<Sale>> {
         const { page, limit } = queryDto;
-        // Consultar ventas con relaciones completas: usuario, detalles y motocicleta en cada detalle
         const query = this.saleRepository.createQueryBuilder('sale')
             .leftJoinAndSelect('sale.usuario', 'user')
             .leftJoinAndSelect('sale.detalles', 'details')
@@ -111,12 +111,10 @@ export class SalesService {
         });
     }
 
-    // Update simple fields usually, complex detail updates require more logic
     async update(id: number, updateSaleDto: UpdateSaleDto): Promise<Sale | null> {
         const sale = await this.findOne(id);
         if (!sale) return null;
 
-        // Separate logic for details update if needed, for now just update main fields
         const { detalles, ...simpleData } = updateSaleDto;
         Object.assign(sale, simpleData);
 

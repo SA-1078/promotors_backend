@@ -2,10 +2,7 @@ import * as bcrypt from 'bcrypt';
 import { Injectable, InternalServerErrorException, NotFoundException, BadRequestException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {
-    paginate,
-    Pagination,
-} from 'nestjs-typeorm-paginate';
+import { paginate, Pagination } from 'nestjs-typeorm-paginate';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -22,16 +19,12 @@ export class UsersService {
 
     async create(createUserDto: CreateUserDto): Promise<User> {
         try {
-            // Hashear la contraseña antes de guardarla
             const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-            // Mapear DTO 'password' a Entidad 'password_hash' y excluir el password en texto plano
             const { password, ...userData } = createUserDto;
-            // Crear instancia de usuario con la data mapeada
             const user = this.userRepository.create({
                 ...userData,
                 password_hash: hashedPassword,
             });
-            // Guardar en base de datos
             return await this.userRepository.save(user);
         } catch (err) {
             this.logger.error('Error creating user', err.stack);
@@ -48,7 +41,6 @@ export class UsersService {
             const query = this.userRepository.createQueryBuilder('user');
 
             if (search) {
-                // Lógica de búsqueda flexible por campo específico o general
                 if (searchField) {
                     switch (searchField) {
                         case 'nombre':
@@ -64,7 +56,6 @@ export class UsersService {
                             );
                     }
                 } else {
-                    // Búsqueda general por nombre o email si no se especifica campo
                     query.andWhere(
                         '(user.nombre ILIKE :search OR user.email ILIKE :search)',
                         { search: `%${search}%` },
@@ -73,6 +64,7 @@ export class UsersService {
             }
 
             // Ordenamiento dinámico con validación para prevenir SQL injection
+
             if (sort) {
                 const allowedSortFields = ['id_usuario', 'nombre', 'email', 'telefono', 'rol', 'fecha_registro'];
                 if (!allowedSortFields.includes(sort)) {
@@ -83,7 +75,6 @@ export class UsersService {
                 query.orderBy('user.id_usuario', 'DESC');
             }
 
-            // Retornar resultados paginados
             return await paginate<User>(query, { page, limit });
         } catch (err) {
             if (err instanceof BadRequestException) {

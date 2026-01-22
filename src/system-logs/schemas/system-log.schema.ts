@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type SystemLogDocument = SystemLog & Document;
 
-@Schema({ collection: 'logs_sistema', timestamps: false }) // timestamps managed manually via fecha
+@Schema({ collection: 'logs_sistema', timestamps: false })
 export class SystemLog {
     @Prop({ required: true })
     usuario_id: number;

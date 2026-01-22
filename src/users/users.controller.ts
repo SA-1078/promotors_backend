@@ -31,6 +31,7 @@ export class UsersController {
         @Query() query: QueryDto,
     ): Promise<SuccessResponseDto<Pagination<User>>> {
         // Limitar el tamaño máximo de página por seguridad (ahora también en DTO)
+
         if (query.limit && query.limit > 100) {
             query.limit = 100;
         }

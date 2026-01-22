@@ -32,7 +32,6 @@ import { ReportsModule } from './reports/reports.module';
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
-
     }),
     UsersModule,
     CategoriesModule,
