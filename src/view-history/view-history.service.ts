@@ -1,8 +1,9 @@
-import { Injectable, Logger, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, Logger, InternalServerErrorException, Inject, forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ViewHistory, ViewHistoryDocument } from './schemas/view-history.schema';
 import { AddViewDto, AddSearchDto } from './dto/create-view-history.dto';
+import { MotorcyclesService } from '../motorcycles/motorcycles.service';
 
 @Injectable()
 export class ViewHistoryService {
@@ -10,6 +11,8 @@ export class ViewHistoryService {
 
     constructor(
         @InjectModel(ViewHistory.name) private viewHistoryModel: Model<ViewHistoryDocument>,
+        @Inject(forwardRef(() => MotorcyclesService))
+        private readonly motorcyclesService: MotorcyclesService,
     ) { }
 
     async addView(addViewDto: AddViewDto): Promise<ViewHistory> {
@@ -73,5 +76,67 @@ export class ViewHistoryService {
             // Log error but don't block the hard delete process if this fails (e.g. auth issues)
             this.logger.warn(`Failed to remove views for motorcycle ID ${motoId}: ${err.message}`);
         }
+    }
+
+    async getGlobalTopViews(limit: number = 5): Promise<any[]> {
+        const aggregated = await this.viewHistoryModel.aggregate([
+            { $unwind: '$visto' }, // Descommprimir el array de vistos
+            {
+                $group: {
+                    _id: '$visto.motocicleta_id',
+                    count: { $sum: 1 },
+                    lastViewed: { $max: '$visto.fecha' }
+                }
+            },
+            { $sort: { count: -1 } }, // Ordenar por más vistos
+            { $limit: limit },
+            {
+                $project: {
+                    motocicleta_id: '$_id',
+                    count: 1,
+                    _id: 0
+                }
+            }
+        ]).exec();
+
+        // Enriquecer con nombres de motos
+        const ids = aggregated.map(a => a.motocicleta_id);
+        if (ids.length > 0) {
+            const motos = await this.motorcyclesService.findByIds(ids);
+            const motoMap = new Map(motos.map(m => [m.id_moto, m.nombre]));
+
+            return aggregated.map(item => ({
+                ...item,
+                modelo: motoMap.get(item.motocicleta_id) || `Moto #${item.motocicleta_id}`
+            }));
+        }
+
+        return aggregated;
+    }
+
+    async getGlobalTopSearches(limit: number = 10): Promise<any[]> {
+        return this.viewHistoryModel.aggregate([
+            { $unwind: '$busquedas' },
+            {
+                $match: {
+                    'busquedas.termino': { $ne: '', $exists: true, $not: { $type: 'null' } }
+                }
+            }, // Filtrar vacíos
+            {
+                $group: {
+                    _id: '$busquedas.termino',
+                    count: { $sum: 1 }
+                }
+            },
+            { $sort: { count: -1 } },
+            { $limit: limit },
+            {
+                $project: {
+                    termino: '$_id',
+                    count: 1,
+                    _id: 0
+                }
+            }
+        ]).exec();
     }
 }

@@ -24,7 +24,7 @@ export class CrmService {
 
         // Automate: Send email notification to Admin (Non-blocking)
         this.mailService.sendMail({
-            to: process.env.MAIL_USER || '', // Send to the admin/system email (fallback to avoid TS error)
+            to: process.env.MAIL_USER || '',
             subject: `Nuevo Lead: ${savedLead.nombre}`,
             message: `
                 <h1>Nuevo Mensaje de Contacto</h1>
@@ -37,6 +37,30 @@ export class CrmService {
                 <p>Gestionar en: <a href="http://localhost:5173/admin/leads">Panel Administrativo</a></p>
             `
         }).catch(err => this.logger.warn(`Error sending lead notification email (background): ${err.message}`));
+
+        // Automate: Auto-response to Client + Status Update
+        if (savedLead.email) {
+            this.mailService.sendMail({
+                to: savedLead.email,
+                subject: 'Hemos recibido tu solicitud - MotorShop',
+                message: `
+                    <div style="font-family: Arial, sans-serif; color: #333;">
+                        <h2 style="color: #ff5722;">¡Hola ${savedLead.nombre}!</h2>
+                        <p>Hemos recibido tu solicitud correctamente.</p>
+                        <p>Un asesor comercial revisará tu consulta sobre: "<strong>${savedLead.mensaje.substring(0, 50)}...</strong>" y se comunicará contigo en breve.</p>
+                        <br>
+                        <p>Gracias por confiar en <strong>MotorShop</strong>.</p>
+                        <hr>
+                        <small style="color: #666;">Este es un mensaje automático, por favor no respondas a este correo.</small>
+                    </div>
+                `
+            }).then(async () => {
+                // Update status to 'CONTACTADO' only if email sent successfully
+                savedLead.estado = 'CONTACTADO';
+                await this.leadRepository.save(savedLead);
+                this.logger.log(`Auto-response sent to ${savedLead.email} and status updated to CONTACTADO`);
+            }).catch(err => this.logger.warn(`Error sending auto-response to client: ${err.message}`));
+        }
 
         return savedLead;
     }

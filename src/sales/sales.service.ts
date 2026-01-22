@@ -9,6 +9,7 @@ import { UpdateSaleDto } from './dto/update-sale.dto';
 import { QueryDto } from '../common/dto/query.dto';
 import { SystemLogsService } from '../system-logs/system-logs.service';
 import { InventoryService } from '../inventory/inventory.service';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class SalesService {
@@ -22,6 +23,7 @@ export class SalesService {
         private readonly dataSource: DataSource,
         private readonly systemLogsService: SystemLogsService,
         private readonly inventoryService: InventoryService,
+        private readonly mailService: MailService,
     ) { }
 
     async create(createSaleDto: CreateSaleDto): Promise<Sale> {
@@ -62,6 +64,20 @@ export class SalesService {
                 accion: 'SALE_CREATED',
                 detalles: { sale_id: savedSale.id_venta, total: savedSale.total }
             }).catch(err => this.logger.warn(`Error logging sale creation (background): ${err.message}`));
+
+            // Automate: Send email alert to Admin
+            this.mailService.sendMail({
+                to: process.env.MAIL_USER || '',
+                subject: ` Nueva Venta Registrada - #${savedSale.id_venta}`,
+                message: `
+                    <h1>¡Nueva Venta Realizada! 🎉</h1>
+                    <p><strong>ID Venta:</strong> #${savedSale.id_venta}</p>
+                    <p><strong>Total:</strong> $${savedSale.total}</p>
+                    <p><strong>Cliente ID:</strong> ${savedSale.id_usuario}</p>
+                    <hr>
+                    <p>Ver detalles en: <a href="http://localhost:5173/admin/sales">Panel de Ventas</a></p>
+                `
+            }).catch(err => this.logger.warn(`Error sending sale alert email: ${err.message}`));
 
             return savedSale;
         } catch (err) {

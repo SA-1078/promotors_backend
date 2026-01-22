@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, InternalServerErrorException, Inject, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { paginate, Pagination } from 'nestjs-typeorm-paginate';
@@ -18,6 +18,7 @@ export class MotorcyclesService {
         @InjectRepository(Motorcycle)
         private readonly motorcycleRepository: Repository<Motorcycle>,
         private readonly inventoryService: InventoryService,
+        @Inject(forwardRef(() => ViewHistoryService))
         private readonly viewHistoryService: ViewHistoryService,
     ) { }
 
@@ -146,5 +147,10 @@ export class MotorcyclesService {
             this.logger.error(`Error restoring motorcycle with ID ${id}`, err.stack);
             throw new InternalServerErrorException('Failed to restore motorcycle');
         }
+    }
+
+    async findByIds(ids: number[]): Promise<Motorcycle[]> {
+        if (!ids.length) return [];
+        return this.motorcycleRepository.findByIds(ids);
     }
 }

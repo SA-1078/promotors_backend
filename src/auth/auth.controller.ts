@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Req } from '@nestjs/common';
+import { Controller, Post, Body, Req, Get, UseGuards } from '@nestjs/common';
 import type { Request } from 'express';
+import { JwtAuthGuard } from './jwt-auth.guard';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -12,7 +13,9 @@ export class AuthController {
     @Post('login')
     async login(@Body() loginDto: LoginDto, @Req() req: Request) {
         const ip = req.ip || req.connection.remoteAddress || 'Unknown';
-        const result = await this.authService.login(loginDto, ip);
+        const userAgent = req.headers['user-agent'] || 'Unknown';
+        const secChUa = req.headers['sec-ch-ua'] as string || '';
+        const result = await this.authService.login(loginDto, ip, userAgent, secChUa);
         return new SuccessResponseDto('Login successful', result);
     }
 
@@ -20,5 +23,11 @@ export class AuthController {
     async register(@Body() registerDto: RegisterDto) {
         const user = await this.authService.register(registerDto);
         return new SuccessResponseDto('User registered successfully', user);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('verify')
+    verify() {
+        return new SuccessResponseDto('Token is valid', { valid: true });
     }
 }

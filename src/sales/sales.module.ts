@@ -6,12 +6,14 @@ import { Sale } from './sale.entity';
 import { SaleDetail } from './sale-detail.entity';
 import { SystemLogsModule } from '../system-logs/system-logs.module';
 import { InventoryModule } from '../inventory/inventory.module';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([Sale, SaleDetail]),
         SystemLogsModule,
-        InventoryModule
+        InventoryModule,
+        MailModule
     ],
     controllers: [SalesController],
     providers: [SalesService],
