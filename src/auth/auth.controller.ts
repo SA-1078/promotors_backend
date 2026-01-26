@@ -30,4 +30,16 @@ export class AuthController {
     verify() {
         return new SuccessResponseDto('Token is valid', { valid: true });
     }
+
+    @Post('forgot-password')
+    async forgotPassword(@Body('email') email: string) {
+        const result = await this.authService.requestPasswordReset(email);
+        return new SuccessResponseDto(result.message, null);
+    }
+
+    @Post('reset-password')
+    async resetPassword(@Body() body: { email: string; code: string; newPassword: string }) {
+        const result = await this.authService.resetPassword(body.email, body.code, body.newPassword);
+        return new SuccessResponseDto(result.message, null);
+    }
 }

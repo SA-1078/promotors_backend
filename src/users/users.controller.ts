@@ -17,6 +17,12 @@ import { QueryDto } from '../common/dto/query.dto';
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
+    @Get('has-admin')
+    async hasAdmin() {
+        const hasAdmin = await this.usersService.hasAdmin();
+        return new SuccessResponseDto('Admin check completed', { hasAdmin });
+    }
+
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('admin')
     @Post()

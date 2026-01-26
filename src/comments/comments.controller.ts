@@ -1,4 +1,7 @@
-import { Controller, Get, Post, Body, Param, ParseIntPipe, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseIntPipe, Delete, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { SuccessResponseDto } from '../common/dto/response.dto';
@@ -9,7 +12,7 @@ export class CommentsController {
 
     @Post()
     async create(@Body() dto: CreateCommentDto) {
-        // Guardar nuevo comentario
+        // Guardar nuevo comentario - público puede comentar
         const comment = await this.commentsService.create(dto);
         return new SuccessResponseDto('Comment added successfully', comment);
     }
@@ -27,8 +30,11 @@ export class CommentsController {
         return new SuccessResponseDto('Motorcycle comments retrieved successfully', comments);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin', 'empleado')
     @Delete(':id')
     async delete(@Param('id') id: string) {
+        // Solo admin y empleado pueden eliminar comentarios
         await this.commentsService.delete(id);
         return new SuccessResponseDto('Comment deleted successfully', null);
     }

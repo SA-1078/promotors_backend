@@ -9,6 +9,8 @@ import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class AuthService {
+    private resetCodes = new Map<string, { code: string; expiresAt: Date }>();
+
     constructor(
         private usersService: UsersService,
         private jwtService: JwtService,
@@ -123,9 +125,115 @@ export class AuthService {
 
         // Registrar nuevo usuario
         const { codigo_secreto, ...userData } = registerDto;
-        return this.usersService.create({
+        const newUser = await this.usersService.create({
             ...userData,
             rol: role,
         });
+
+        // Generar token JWT para login automático
+        const { password_hash, ...userWithoutPassword } = newUser;
+        const payload = { email: newUser.email, sub: newUser.id_usuario, role: newUser.rol };
+
+        return {
+            access_token: this.jwtService.sign(payload),
+            user: userWithoutPassword,
+        };
+    }
+
+    async requestPasswordReset(email: string) {
+        // Verificar si el usuario existe
+        const user = await this.usersService.findByEmail(email);
+        if (!user) {
+            // Por seguridad, no revelamos si el email existe o no
+            return { message: 'Si el correo existe, recibirás un código de verificación' };
+        }
+
+        // Generar código de 6 dígitos
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+        // Guardar código con expiración de 15 minutos
+        const expiresAt = new Date();
+        expiresAt.setMinutes(expiresAt.getMinutes() + 15);
+        this.resetCodes.set(email, { code, expiresAt });
+
+        // Enviar email con el código
+        await this.mailService.sendMail({
+            to: email,
+            subject: '🔐 Código de Recuperación de Contraseña - MotoRShop',
+            message: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                        <h1 style="color: white; margin: 0; font-size: 28px;">🔐 Recuperación de Contraseña</h1>
+                    </div>
+                    <div style="background: #f7fafc; padding: 40px; border-radius: 0 0 10px 10px;">
+                        <p style="font-size: 16px; color: #2d3748; margin-bottom: 20px;">Hola <strong>${user.nombre}</strong>,</p>
+                        <p style="font-size: 16px; color: #2d3748; margin-bottom: 30px;">Has solicitado restablecer tu contraseña. Usa el siguiente código de verificación:</p>
+                        
+                        <div style="background: white; border: 3px dashed #667eea; padding: 20px; text-align: center; border-radius: 8px; margin: 30px 0;">
+                            <p style="font-size: 14px; color: #718096; margin: 0 0 10px 0;">Tu código de verificación:</p>
+                            <p style="font-size: 42px; font-weight: bold; color: #667eea; margin: 0; letter-spacing: 8px; font-family: 'Courier New', monospace;">${code}</p>
+                        </div>
+
+                        <p style="font-size: 14px; color: #718096; margin-bottom: 20px;">
+                            ⏰ Este código expirará en <strong>15 minutos</strong>.
+                        </p>
+
+                        <p style="font-size: 14px; color: #e53e3e; background: #fff5f5; padding: 15px; border-left: 4px solid #e53e3e; border-radius: 4px;">
+                            ⚠️ Si no solicitaste este cambio, puedes ignorar este mensaje.
+                        </p>
+
+                        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
+                            <p style="font-size: 12px; color: #a0aec0; margin: 0;">MotoRShop - Sistema de Gestión</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        });
+
+        return { message: 'Si el correo existe, recibirás un código de verificación' };
+    }
+
+    async resetPassword(email: string, code: string, newPassword: string) {
+        // Verificar si existe un código para este email
+        const storedData = this.resetCodes.get(email);
+        if (!storedData) {
+            throw new UnauthorizedException('Código inválido o expirado');
+        }
+
+        // Verificar si el código ha expirado
+        if (new Date() > storedData.expiresAt) {
+            this.resetCodes.delete(email);
+            throw new UnauthorizedException('El código ha expirado. Solicita uno nuevo');
+        }
+
+        // Verificar si el código es correcto
+        if (storedData.code !== code) {
+            throw new UnauthorizedException('Código incorrecto');
+        }
+
+        // Buscar usuario
+        const user = await this.usersService.findByEmail(email);
+        if (!user) {
+            throw new UnauthorizedException('Usuario no encontrado');
+        }
+
+        // Actualizar contraseña
+        await this.usersService.update(user.id_usuario, { password: newPassword });
+
+        // Eliminar el código usado
+        this.resetCodes.delete(email);
+
+        // Log de cambio de contraseña
+        await this.systemLogsService.create({
+            usuario_id: user.id_usuario,
+            accion: 'PASSWORD_RESET',
+            ip: 'Sistema',
+            detalles: {
+                email: user.email,
+                timestamp: new Date().toISOString()
+            }
+        }).catch(() => { });
+
+        return { message: 'Contraseña actualizada exitosamente' };
     }
 }

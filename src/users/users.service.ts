@@ -22,6 +22,15 @@ export class UsersService {
 
     async create(createUserDto: CreateUserDto): Promise<User> {
         try {
+            // Check if email already exists
+            const existingUser = await this.userRepository.findOne({
+                where: { email: createUserDto.email }
+            });
+
+            if (existingUser) {
+                throw new BadRequestException('El correo electrónico ya está registrado');
+            }
+
             // Hashear la contraseña antes de guardarla
             const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
             // Mapear DTO 'password' a Entidad 'password_hash' y excluir el password en texto plano
@@ -34,8 +43,20 @@ export class UsersService {
             // Guardar en base de datos
             return await this.userRepository.save(user);
         } catch (err) {
+            // Si es un BadRequestException que ya lanzamos, re-lanzarlo
+            if (err instanceof BadRequestException) {
+                throw err;
+            }
+
+            // Para otros errores de base de datos
             this.logger.error('Error creating user', err.stack);
-            throw new InternalServerErrorException('Failed to create user');
+
+            // Check for unique constraint violation (código de error de PostgreSQL)
+            if (err.code === '23505') {
+                throw new BadRequestException('El correo electrónico ya está registrado');
+            }
+
+            throw new InternalServerErrorException('Error al crear usuario. Por favor intenta de nuevo.');
         }
     }
 
@@ -92,6 +113,13 @@ export class UsersService {
             this.logger.error('Error retrieving users', err.stack);
             throw new InternalServerErrorException('Failed to retrieve users');
         }
+    }
+
+    async hasAdmin(): Promise<boolean> {
+        const adminCount = await this.userRepository.count({
+            where: { rol: 'admin' }
+        });
+        return adminCount > 0;
     }
 
     async findOne(id: number): Promise<User> {

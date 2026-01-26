@@ -26,9 +26,11 @@ export class CategoriesController {
     }
 
     @Get()
-    async findAll(@Query() query: QueryDto): Promise<SuccessResponseDto<Pagination<Category>>> {
+    async findAll(@Query() query: QueryDto, @Query('withDeleted') withDeleted?: string): Promise<SuccessResponseDto<Pagination<Category>>> {
         if (query.limit && query.limit > 100) query.limit = 100;
-        const result = await this.categoriesService.findAll(query);
+        const result = await this.categoriesService.findAll(query, {
+            withDeleted: withDeleted === 'true'
+        });
         return new SuccessResponseDto('Categories retrieved successfully', result);
     }
 
@@ -51,10 +53,24 @@ export class CategoriesController {
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('admin')
     @Delete(':id')
-    async remove(@Param('id', ParseIntPipe) id: number) {
+    async remove(@Param('id', ParseIntPipe) id: number, @Query('type') type?: 'soft' | 'hard') {
         // Solo el administrador puede eliminar categorías
-        const category = await this.categoriesService.remove(id);
+        const deleteType = type || 'soft'; // Default a soft delete
+        const category = await this.categoriesService.remove(id, deleteType);
         if (!category) throw new NotFoundException('Category not found');
-        return new SuccessResponseDto('Category deleted successfully', category);
+        return new SuccessResponseDto(
+            deleteType === 'soft'
+                ? 'Category soft deleted successfully'
+                : 'Category permanently deleted successfully',
+            category
+        );
+    }
+
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
+    @Post(':id/restore')
+    async restore(@Param('id', ParseIntPipe) id: number) {
+        const category = await this.categoriesService.restore(id);
+        return new SuccessResponseDto('Category restored successfully', category);
     }
 }
