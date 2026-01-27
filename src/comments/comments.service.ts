@@ -25,6 +25,14 @@ export class CommentsService {
         return this.commentModel.find({ motocicleta_id: motorcycleId }).sort({ fecha: -1 }).exec();
     }
 
+    async update(id: string, comentario: string, calificacion: number): Promise<Comment | null> {
+        return this.commentModel.findByIdAndUpdate(
+            id,
+            { comentario, calificacion },
+            { new: true }
+        ).exec();
+    }
+
     async delete(id: string): Promise<any> {
         return this.commentModel.findByIdAndDelete(id).exec();
     }

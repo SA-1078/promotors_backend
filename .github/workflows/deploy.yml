@@ -1,4 +1,4 @@
-name: Deploy to Azure VM
+name: 🚀 Deploy Backend (NestJS + PM2)
 
 on:
   push:
@@ -7,19 +7,21 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Deploy to Azure VM
-        uses: appleboy/ssh-action@master
+        uses: actions/checkout@v4
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/promotors_backend
+            set -e
+
+            cd /opt/promotors-backend
             git pull origin main
             npm install
             npm run build
