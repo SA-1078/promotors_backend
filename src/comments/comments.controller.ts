@@ -40,7 +40,7 @@ export class CommentsController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles('admin', 'empleado')
+    @Roles('admin')
     @Delete(':id')
     async delete(@Param('id') id: string) {
         // Solo admin y empleado pueden eliminar comentarios

@@ -93,7 +93,15 @@ export class MotorcyclesService {
 
     async update(id: number, updateMotorcycleDto: UpdateMotorcycleDto): Promise<Motorcycle> {
         try {
-            const motorcycle = await this.findOne(id);
+            // Find without relations to avoid TypeORM issues when updating FKs
+            const motorcycle = await this.motorcycleRepository.findOne({
+                where: { id_moto: id }
+            });
+
+            if (!motorcycle) {
+                throw new NotFoundException(`Motorcycle with ID ${id} not found`);
+            }
+
             Object.assign(motorcycle, updateMotorcycleDto);
             return await this.motorcycleRepository.save(motorcycle);
         } catch (err) {
