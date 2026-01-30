@@ -15,7 +15,7 @@ export class CartsService {
     async createOrUpdate(createCartDto: CreateCartDto): Promise<Cart> {
         const { usuario_id, items } = createCartDto;
 
-        // Automate: Calculate prices
+        
         for (const item of items) {
             const moto = await this.motorcyclesService.findOne(item.motocicleta_id);
             if (!moto) {
@@ -25,15 +25,14 @@ export class CartsService {
             item.subtotal = moto.precio * item.cantidad;
         }
 
-        // Verificar si el usuario ya tiene un carrito
         let cart = await this.cartModel.findOne({ usuario_id });
 
         if (cart) {
-            // Si existe, actualizar los items (reemplazo completo del estado local)
+        
             cart.items = items as any;
             return cart.save();
         } else {
-            // Si no existe, crear nuevo carrito
+            
             const newCart = new this.cartModel(createCartDto);
             return newCart.save();
         }
