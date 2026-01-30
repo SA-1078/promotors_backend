@@ -138,6 +138,15 @@ export class SalesService {
 
         return result;
     }
+
+    async findByUser(userId: number): Promise<Sale[]> {
+        return await this.saleRepository.find({
+            where: { id_usuario: userId },
+            relations: ['detalles', 'detalles.motocicleta', 'detalles.motocicleta.categoria'],
+            order: { fecha_venta: 'DESC' }
+        });
+    }
+
     async getTotalRevenue(): Promise<number> {
         const { sum } = await this.saleRepository
             .createQueryBuilder('sale')

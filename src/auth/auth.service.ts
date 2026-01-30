@@ -140,18 +140,23 @@ export class AuthService {
         };
     }
 
+    async getUserById(userId: number) {
+        const user = await this.usersService.findOne(userId);
+        if (!user) {
+            throw new UnauthorizedException('Usuario no encontrado');
+        }
+        const { password_hash, ...userWithoutPassword } = user;
+        return userWithoutPassword;
+    }
+    // Recuperar contraseña
     async requestPasswordReset(email: string) {
-        // Verificar si el usuario existe
         const user = await this.usersService.findByEmail(email);
         if (!user) {
-            // Por seguridad, no revelamos si el email existe o no
             return { message: 'Si el correo existe, recibirás un código de verificación' };
         }
 
-        // Generar código de 6 dígitos
         const code = Math.floor(100000 + Math.random() * 900000).toString();
 
-        // Guardar código con expiración de 15 minutos
         const expiresAt = new Date();
         expiresAt.setMinutes(expiresAt.getMinutes() + 15);
         this.resetCodes.set(email, { code, expiresAt });

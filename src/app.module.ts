@@ -19,6 +19,7 @@ import { MailModule } from './mail/mail.module';
 import { PayPalModule } from './paypal/paypal.module';
 import { ReportsModule } from './reports/reports.module';
 import { FaqModule } from './faq/faq.module';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { FaqModule } from './faq/faq.module';
     PayPalModule,
     ReportsModule,
     FaqModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

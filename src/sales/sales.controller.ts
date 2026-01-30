@@ -1,6 +1,6 @@
 import {
     Controller, Get, Post, Put, Delete, Body, Param,
-    Query, NotFoundException, ParseIntPipe, UseGuards
+    Query, NotFoundException, ParseIntPipe, UseGuards, Request
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
@@ -16,6 +16,13 @@ import { QueryDto } from '../common/dto/query.dto';
 @Controller('sales')
 export class SalesController {
     constructor(private readonly salesService: SalesService) { }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('my-orders')
+    async getMyOrders(@Request() req: any) {
+        const orders = await this.salesService.findByUser(req.user.id_usuario);
+        return new SuccessResponseDto('Your orders retrieved successfully', orders);
+    }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('admin', 'empleado')

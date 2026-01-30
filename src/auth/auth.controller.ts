@@ -31,6 +31,14 @@ export class AuthController {
         return new SuccessResponseDto('Token is valid', { valid: true });
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Get('profile')
+    async getProfile(@Req() req: any) {
+        const userId = req.user.userId;
+        const user = await this.authService.getUserById(userId);
+        return new SuccessResponseDto('Profile retrieved successfully', user);
+    }
+
     @Post('forgot-password')
     async forgotPassword(@Body('email') email: string) {
         const result = await this.authService.requestPasswordReset(email);
