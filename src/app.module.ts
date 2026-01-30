@@ -18,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
 import { PayPalModule } from './paypal/paypal.module';
 import { ReportsModule } from './reports/reports.module';
+import { FaqModule } from './faq/faq.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { ReportsModule } from './reports/reports.module';
     MailModule,
     PayPalModule,
     ReportsModule,
+    FaqModule,
   ],
   controllers: [AppController],
   providers: [AppService],
