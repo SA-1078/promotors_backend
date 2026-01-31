@@ -13,7 +13,6 @@ export class CommentsController {
 
     @Post()
     async create(@Body() dto: CreateCommentDto) {
-        // Guardar nuevo comentario - público puede comentar
         const comment = await this.commentsService.create(dto);
         return new SuccessResponseDto('Comment added successfully', comment);
     }
@@ -26,7 +25,6 @@ export class CommentsController {
 
     @Get('motorcycle/:id')
     async findByMotorcycle(@Param('id', ParseIntPipe) id: number) {
-        // Filtrar comentarios por ID de motocicleta
         const comments = await this.commentsService.findByMotorcycle(id);
         return new SuccessResponseDto('Motorcycle comments retrieved successfully', comments);
     }
@@ -34,7 +32,6 @@ export class CommentsController {
     @UseGuards(JwtAuthGuard)
     @Put(':id')
     async update(@Param('id') id: string, @Body() dto: UpdateCommentDto) {
-        // Usuario autenticado puede editar su comentario
         const updatedComment = await this.commentsService.update(id, dto.comentario, dto.calificacion);
         return new SuccessResponseDto('Comment updated successfully', updatedComment);
     }
@@ -43,7 +40,6 @@ export class CommentsController {
     @Roles('admin')
     @Delete(':id')
     async delete(@Param('id') id: string) {
-        // Solo admin y empleado pueden eliminar comentarios
         await this.commentsService.delete(id);
         return new SuccessResponseDto('Comment deleted successfully', null);
     }
