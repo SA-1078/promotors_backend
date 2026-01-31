@@ -20,6 +20,7 @@ import { PayPalModule } from './paypal/paypal.module';
 import { ReportsModule } from './reports/reports.module';
 import { FaqModule } from './faq/faq.module';
 import { StatsModule } from './stats/stats.module';
+import { FacturasModule } from './facturas/facturas.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { StatsModule } from './stats/stats.module';
     ReportsModule,
     FaqModule,
     StatsModule,
+    FacturasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

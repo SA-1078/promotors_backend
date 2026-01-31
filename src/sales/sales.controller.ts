@@ -25,11 +25,10 @@ export class SalesController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles('admin', 'empleado')
+    @Roles('admin', 'empleado', 'cliente')
     @Post()
     async create(@Body() dto: CreateSaleDto) {
-        // Registrar venta incluyendo sus detalles (productos, cantidades)
-        // Solo admin y empleado pueden registrar ventas
+        // Todos los usuarios autenticados pueden crear ventas (sus compras)
         const sale = await this.salesService.create(dto);
         return new SuccessResponseDto('Sale created successfully', sale);
     }
@@ -69,5 +68,12 @@ export class SalesController {
         const sale = await this.salesService.remove(id);
         if (!sale) throw new NotFoundException('Sale not found');
         return new SuccessResponseDto('Sale deleted successfully', sale);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post(':id/complete')
+    async completeSale(@Param('id', ParseIntPipe) id: number) {
+        const sale = await this.salesService.completeSale(id);
+        return new SuccessResponseDto('Sale marked as completed', sale);
     }
 }

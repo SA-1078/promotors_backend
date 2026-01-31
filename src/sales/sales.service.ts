@@ -151,11 +151,20 @@ export class SalesService {
         const { sum } = await this.saleRepository
             .createQueryBuilder('sale')
             .select('SUM(sale.total)', 'sum')
-            .where("sale.estado = 'PAGADO'") // Only count paid sales? Or all? Let's say PAGADO.
-            .orWhere("sale.estado = 'PENDIENTE'") // For demo, allow pending too? No, usually only paid. 
-            // Stick to PAGADO for realism, but if demo has no paid sales, it will be 0.
-            // Let's count everything for now to show number > 0 in demo.
+            .where("sale.estado = 'PAGADO'")
+            .orWhere("sale.estado = 'PENDIENTE'")
             .getRawOne();
         return Number(sum) || 0;
     }
+
+    async completeSale(saleId: number): Promise<Sale> {
+        const sale = await this.saleRepository.findOne({ where: { id_venta: saleId } });
+        if (!sale) {
+            throw new Error('Venta no encontrada');
+        }
+
+        sale.estado = 'Completado';
+        return await this.saleRepository.save(sale);
+    }
 }
+

@@ -21,12 +21,19 @@ export class MailService {
         });
 
         try {
-            const info = await transporter.sendMail({
+            const mailOptions: any = {
                 from: process.env.MAIL_USER,
                 to: dto.to,
                 subject: dto.subject,
                 html: dto.message,
-            });
+            };
+
+            // Add attachments if provided
+            if (dto.attachments && dto.attachments.length > 0) {
+                mailOptions.attachments = dto.attachments;
+            }
+
+            const info = await transporter.sendMail(mailOptions);
 
             return { messageId: info.messageId };
         } catch (error) {
